@@ -1,6 +1,8 @@
 import matplotlib.pyplot as plt
 import mplcursors
 import streamlit as st
+import seaborn as sns
+
 def plotCat(df, cat_col, x_col,y_col):
     # Clear previous plot
     plt.clf()
@@ -40,4 +42,12 @@ def plotCat(df, cat_col, x_col,y_col):
 
     # Show the figure
     #plt.show() 
+    st.pyplot(plt.gcf())
+
+def Pair_plots(df):
+    sns.pairplot(df)
+    st.pyplot(plt.gcf())
+
+def Pair_plots_hue(df , col_name):
+    sns.pairplot(df , hue=col_name)
     st.pyplot(plt.gcf())
