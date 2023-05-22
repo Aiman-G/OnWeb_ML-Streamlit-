@@ -9,8 +9,6 @@ from streamlit_pandas_profiling import st_profile_report
 from pycaret.clustering import *
 import plotting
 import ML_tools
-import time
-
 
 st.markdown(
     """
@@ -44,12 +42,9 @@ if menu_file == 'Choose CSV File':
     csv_file = st.file_uploader("Upload your CSV file", type=["csv"])
     if csv_file:
         df = pd.read_csv(csv_file, index_col=None)
-
-        #df.to_csv(file_path, index=None)
         st.dataframe(df)
-       # st.success(f"File saved at: {file_path}")
+       
     else:
-        #df = pd.read_csv(file_path, index_col=None)
         pass
 
 
@@ -57,6 +52,7 @@ if menu_file == 'Choose CSV File':
 
 content_placeholder = st.empty()  
 if summary_menu == 'summary' :
+    
     st.title("Summary")
     with st.expander("Summary"):
         content_placeholder.empty()  # Clear previous content
@@ -64,13 +60,11 @@ if summary_menu == 'summary' :
             # Display the DataFrame description in Streamlit
             st.dataframe(df.describe())
 elif summary_menu == 'Profiling':
-    #st.write('You selected profiling')
     st.title("EDA")
     with st.expander(" Profiling Report"):
             
         if  'df' in globals() and not df.empty:
             profile_report = df.profile_report()
-    
             st_profile_report(profile_report)
         else:
             st.write("No data")
@@ -143,7 +137,7 @@ if ML_radios == 'clusting':
                     st.write("kmeans parameters")
                     st.write(kmeans)
                 st.write("processing is done!")
-                
+                                
                 with st.spinner("Clustring & plotting..."):
                                      
                     kmean_results = assign_model(kmeans)
