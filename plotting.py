@@ -38,7 +38,7 @@ def plotCat(df, cat_col, x_col,y_col):
     # Set the overall title for the figure
     #fig.suptitle("Interactive plot: Plots for each test temprature and categorical variable combination")
     # Add space between subplots
-    fig.subplots_adjust(hspace=0.5)
+    #fig.subplots_adjust(hspace=0.5)
 
     # Show the figure
     #plt.show() 

@@ -77,18 +77,15 @@ if menu_vis == 'categories':
         # Get column names from df
        column_names = df.columns.tolist()
        with st.expander("Expand to see selction variables"):
-        
-        # Create combo boxes and populate them with column names
-        selected_cat_col = st.selectbox("Select Cate. ", column_names)
-        selected_x_col = st.selectbox("Select X column ", column_names)
-        selected_y_col = st.selectbox("Select Y column ", column_names)
-        plot_cat_button = st.button("Plot","plot_cat_button" )
-
-       if plot_cat_button:
-            
-            if selected_cat_col and selected_x_col and selected_y_col:
-                plotting.plotCat(df, selected_cat_col, selected_x_col,selected_y_col )
-                #st.write(f"You selected {selected_cat_col} and {selected_x_col}")
+            # Create combo boxes and populate them with column names
+            selected_cat_col = st.selectbox("Select Cate. ", column_names)
+            selected_x_col = st.selectbox("Select X column ", column_names)
+            selected_y_col = st.selectbox("Select Y column ", column_names)
+            plot_cat_button = st.button("Plot","plot_cat_button" )
+            if plot_cat_button:
+                if selected_cat_col and selected_x_col and selected_y_col:
+                    plotting.plotCat(df, selected_cat_col, selected_x_col,selected_y_col )
+                    #st.write(f"You selected {selected_cat_col} and {selected_x_col}")
 elif menu_vis == 'PairPlot':
     content_placeholder.empty()  # Clear previous content
     st.title("Pair Plots")
@@ -113,7 +110,7 @@ elif menu_vis == "Pair Plot(category)":
                    
 
 elif menu_vis == 'combination':
-    st.write("Work in progress..")
+    st.write("Not implemented yet...")
                             
 
 # ----------------------  ML -----------------------------------
@@ -124,8 +121,6 @@ if ML_radios == 'clusting':
          st.title('Setup data & show clustring information ')
          with st.expander("Setup Summery"):
            
-
-            #st.subheader('Setup data befor clustring Categorical Columns for Clustering')
             execlud_cols = st.multiselect('Choose columns to execlude ', options=df.columns)
             setup_button = st.button('Setup Data', "setup_button")
             if setup_button:
