@@ -2,6 +2,9 @@ import matplotlib.pyplot as plt
 import mplcursors
 import streamlit as st
 import seaborn as sns
+import mpld3
+#from bs4  import BeautifulSoup
+import streamlit.components.v1 as components
 
 def plotCat(df, cat_col, x_col,y_col):
     # Clear previous plot
@@ -38,11 +41,12 @@ def plotCat(df, cat_col, x_col,y_col):
     # Set the overall title for the figure
     #fig.suptitle("Interactive plot: Plots for each test temprature and categorical variable combination")
     # Add space between subplots
-    #fig.subplots_adjust(hspace=0.5)
-
+    fig.subplots_adjust(hspace=0.5)
     # Show the figure
     #plt.show() 
     st.pyplot(plt.gcf())
+
+
 
 def Pair_plots(df):
     sns.pairplot(df)
@@ -51,3 +55,33 @@ def Pair_plots(df):
 def Pair_plots_hue(df , col_name):
     sns.pairplot(df , hue=col_name)
     st.pyplot(plt.gcf())
+
+
+# def modify_html_report(html_file):
+#     with open(html_file, 'r') as file:
+#         soup = BeautifulSoup(file, 'html.parser')
+#         # Remove unwanted sections or elements from the report
+#         # You can customize this based on the structure of your HTML report
+#         reproduction_container = soup.find(id='reproduction-container')
+#         if reproduction_container:
+#             reproduction_container.decompose()
+#         # Modify CSS to adjust font size or other styling
+#         # You can add additional CSS modifications as needed
+#         style = soup.new_tag('style')
+#         style.string = """
+#             body {
+#                 font-size: 12px;
+#             }
+#             .title {
+#                 font-size: 18px;
+#                 font-weight: bold;
+#                 margin-bottom: 10px;
+#             }
+#             /* Add more custom styling rules here */
+#         """
+#         soup.head.append(style)
+#     # Save the modified HTML file
+#     modified_html_file = f"{html_file}_modified.html"
+#     with open(modified_html_file, 'w') as file:
+#         file.write(str(soup))
+#     return modified_html_file
