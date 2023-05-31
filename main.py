@@ -15,7 +15,7 @@ from pandas_profiling import ProfileReport
 from streamlit_pandas_profiling import st_profile_report
 from pycaret.clustering import *
 #from ydata_profiling import ProfileReport
-import weasyprint
+#import weasyprint
 from selenium import webdriver
 import pdfkit
 import io
