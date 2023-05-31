@@ -42,8 +42,18 @@ st.markdown(
 )
 
 # Add photo to the sidebar
-image = Image.open('D:\cSharp_dataVisu\Thabab\ploticon22.png')
-st.sidebar.image(image, use_column_width=True)
+#image = Image.open('D:\cSharp_dataVisu\Thabab\ploticon22.png')
+# Get the current script file's directory
+current_dir = os.path.dirname(os.path.abspath(__file__))
+
+# Relative path to the images folder
+#images_folder = os.path.join(current_dir, 'images')
+
+# Reference to an image file within the images folder
+image_path = os.path.join(current_dir, 'thabab.png')
+
+st.sidebar.image(image_path, use_column_width=True)
+
 # with st.sidebar:
 #     # Add menu options to the sidebar
 #     st.title("Build is in Progress")
