@@ -37,9 +37,9 @@ def plotCat(df, cat_col, x_col,y_col):
             
             # Use mplcursors to show the legend when the mouse hovers over the plot
             mplcursors.cursor(axs[i].get_lines(), hover=True).connect("add", lambda sel: sel.annotation.set_text(sel.artist.get_label()))
-        
-        
-        
+     
+     
+    
         # Set the overall title for the figure
         #fig.suptitle("Interactive plot: Plots for each test temprature and categorical variable combination")
         # Add space between subplots
@@ -54,7 +54,7 @@ def plotCat(df, cat_col, x_col,y_col):
         print("Recheck your data file (csv fike), be sure value types of colums are consistent")
     except Exception as err:
         print(f"Unexpected {err=}, {type(err)=}")
-    raise
+        raise
 
 
 
