@@ -6,9 +6,9 @@ from PIL import Image
 import pandas as pd
 import os
 
-os.add_dll_directory(r"C:\Program Files\GTK3-Runtime Win64\bin")
-GTK_FOLDER = r'C:\Program Files\GTK3-Runtime Win64\bin'
-os.environ['PATH'] = GTK_FOLDER + os.pathsep + os.environ.get('PATH', '')
+#os.add_dll_directory(r"C:\Program Files\GTK3-Runtime Win64\bin")
+#GTK_FOLDER = r'C:\Program Files\GTK3-Runtime Win64\bin'
+#os.environ['PATH'] = GTK_FOLDER + os.pathsep + os.environ.get('PATH', '')
 
 from pandas_profiling import ProfileReport
 #import pandas_profiling
