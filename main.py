@@ -51,7 +51,7 @@ st.markdown(
 # Reference to an image file within the images folder
 #image_path = os.path.join(images_folder, 'ploticon22.png')
 #st.write(image_path)
-st.sidebar.image(aiman-g-onweb-ml-main-43kkgi/Thabab.png", use_column_width=True)
+st.sidebar.image("aiman-g-onweb-ml-main-43kkgi/Thabab.png", use_column_width=True)
 
 # with st.sidebar:
 #     # Add menu options to the sidebar
