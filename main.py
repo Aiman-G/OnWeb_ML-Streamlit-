@@ -6,9 +6,9 @@ from PIL import Image
 import pandas as pd
 import os
 
-#os.add_dll_directory(r"C:\Program Files\GTK3-Runtime Win64\bin")
-#GTK_FOLDER = r'C:\Program Files\GTK3-Runtime Win64\bin'
-#os.environ['PATH'] = GTK_FOLDER + os.pathsep + os.environ.get('PATH', '')
+# os.add_dll_directory(r"C:\Program Files\GTK3-Runtime Win64\bin")
+# GTK_FOLDER = r'C:\Program Files\GTK3-Runtime Win64\bin'
+# os.environ['PATH'] = GTK_FOLDER + os.pathsep + os.environ.get('PATH', '')
 
 from pandas_profiling import ProfileReport
 #import pandas_profiling
@@ -42,19 +42,16 @@ st.markdown(
 )
 
 # Add photo to the sidebar
-#image = Image.open('D:\cSharp_dataVisu\Thabab\ploticon22.png')
+#image = Image.open('.\images\ploticon22.png')
 
 # Get the current script file's directory
-#current_dir = os.path.dirname(os.path.abspath(__file__))
-
+current_dir = os.path.dirname(os.path.abspath(__file__))
 # Relative path to the images folder
-#images_folder = os.path.join(current_dir, 'images')
-
+images_folder = os.path.join(current_dir, 'images')
 # Reference to an image file within the images folder
-#image_path = os.path.join(current_dir, 'thabab.png')
-
-#st.sidebar.image(image_path, use_column_width=True)
-
+image_path = os.path.join(images_folder, 'ploticon22.png')
+st.write(image_path)
+st.sidebar.image(image_path, use_column_width=True)
 # with st.sidebar:
 #     # Add menu options to the sidebar
 #     st.title("Build is in Progress")
@@ -164,7 +161,7 @@ if menu_vis == 'categories':
        column_names = df.columns.tolist()
        with st.expander("Expand to see selction variables"):
             # Create combo boxes and populate them with column names
-            selected_cat_col = st.selectbox("Select Cate. ", column_names)
+            selected_cat_col = st.selectbox("Select Categorical ", column_names)
             selected_x_col = st.selectbox("Select X column ", column_names)
             selected_y_col = st.selectbox("Select Y column ", column_names)
             plot_cat_button = st.button("Plot","plot_cat_button" )
@@ -202,28 +199,36 @@ elif menu_vis == 'combination':
 # ----------------------  ML -----------------------------------
 
 if ML_radios == 'clustering':
-    if  'df' in globals() and not df.empty:
-        
-         st.title('Setup data & show clustring information ')
-         with st.expander("Setup Summery"):
-           
-            execlud_cols = st.multiselect('Choose columns to execlude ', options=df.columns)
-            setup_button = st.button('Setup Data', "setup_button")
-            if setup_button:
-                with st.spinner("Processing & producing summary .."):
-                    setup_experiment = setup(df, normalize = True, ignore_features = execlud_cols, session_id = 123)
-                    setup_summary = setup_experiment.pull()
-                    st.write(setup_summary)
-                    kmeans = create_model('kmeans')
-                    st.write("kmeans parameters")
-                    st.write(kmeans)
-                st.write("processing is done!")
-                                
-                with st.spinner("Clustring & plotting..."):
-                                     
-                    kmean_results = assign_model(kmeans)
-                    st.write("kmeans result")
-                    st.write(kmean_results)
-                    plot_model(kmeans,display_format='streamlit')
+    try:
+
+        if  'df' in globals() and not df.empty:
+            
+            st.title('Setup data & show clustring information ')
+            with st.expander("Setup Summery"):
+            
+                execlud_cols = st.multiselect('Choose columns to execlude ', options=df.columns)
+                setup_button = st.button('Setup Data', "setup_button")
+                if setup_button:
+                    with st.spinner("Processing & producing summary .."):
+                        setup_experiment = setup(df, normalize = True, ignore_features = execlud_cols, session_id = 123)
+                        setup_summary = setup_experiment.pull()
+                        st.write(setup_summary)
+                        kmeans = create_model('kmeans')
+                        st.write("kmeans parameters")
+                        st.write(kmeans)
+                    st.write("processing is done!")
+                                    
+                    with st.spinner("Clustring & plotting..."):
+                                        
+                        kmean_results = assign_model(kmeans)
+                        st.write("kmeans result")
+                        st.write(kmean_results)
+                        plot_model(kmeans,display_format='streamlit')
                 
-               
+    except OSError as err:
+        print(" Hosting server error:", err)
+    except ValueError:
+        print("Recheck your data file (csv file), be sure value types of colums are consistent, at least two columns should be present")
+    except Exception as err:
+        print(f"Unexpected {err=}, {type(err)=}")
+        raise       
