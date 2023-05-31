@@ -45,13 +45,14 @@ st.markdown(
 #image = Image.open('.\images\ploticon22.png')
 
 # Get the current script file's directory
-current_dir = os.path.dirname(os.path.abspath(__file__))
+#current_dir = os.path.dirname(os.path.abspath(__file__))
 # Relative path to the images folder
-images_folder = os.path.join(current_dir, 'images')
+#images_folder = os.path.join(current_dir, 'images')
 # Reference to an image file within the images folder
-image_path = os.path.join(images_folder, 'ploticon22.png')
-st.write(image_path)
-st.sidebar.image(image_path, use_column_width=True)
+#image_path = os.path.join(images_folder, 'ploticon22.png')
+#st.write(image_path)
+#st.sidebar.image(image_path, use_column_width=True)
+
 # with st.sidebar:
 #     # Add menu options to the sidebar
 #     st.title("Build is in Progress")
