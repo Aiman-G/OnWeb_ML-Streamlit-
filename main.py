@@ -85,16 +85,24 @@ with expander_ml:
  # ---------------------------------- Reading data ----------------------------------------
 
 # Read csv
+# Read csv
 if menu_file == 'Choose CSV File':
-    #st.title("Upload your data here")
-    csv_file = st.file_uploader("Upload your CSV file", type=["csv"])
-    if csv_file:
-        df = pd.read_csv(csv_file, index_col=None)
-        st.dataframe(df)
-       
-    else:
-        pass
-
+    try:
+        #st.title("Upload your data here")
+        csv_file = st.file_uploader("Upload your CSV file", type=["csv"])
+        if csv_file:
+            df = pd.read_csv(csv_file, index_col=None)
+            st.dataframe(df)
+        
+        else:
+            pass
+    except OSError as err:
+        print(" Hosting server error, not me..:", err)
+    except ValueError:
+        print("Come on mate!, Recheck your data file (csv file) ")
+    except Exception as err:
+        print("Come on mate!, Recheck your data file (csv file)")
+        raise       
 
 
 # --------------------------------------Data Summarization ---------------------------------------------
